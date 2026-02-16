@@ -26,7 +26,7 @@
     </nav>
 
     <section class="hero">
-        <video class="bg-video" autoplay muted loop playsinline>
+        <video class="bg-video" autoplay muted loop playsinline webkit-playsinline preload="auto">
             <source src="background.mp4" type="video/mp4" />
         </video>
         <h1 class="title">
@@ -142,6 +142,15 @@
             document.querySelectorAll('.store-card').forEach(c => c.classList.remove('active'));
             card.classList.add('active');
             document.getElementById('store-map').src = `https://www.google.com/maps?q=${lat},${lng}&output=embed`;
+        }
+
+        // Use lighter video on mobile for autoplay
+        if (window.innerWidth <= 768) {
+            var video = document.querySelector('.bg-video');
+            var source = video.querySelector('source');
+            source.src = 'background-mobile.mp4';
+            video.load();
+            video.play();
         }
     </script>
 </body>
